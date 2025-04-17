@@ -1,6 +1,6 @@
 package com.example.gatewayBff.api.services;
 
-import com.example.gatewayBff.api.infra.apiproduto.ApiProduto;
+import com.example.gatewayBff.api.infra.apiproduto.ApiFornecedorProduto;
 import com.example.gatewayBff.api.request.FornecedorRequest;
 import com.example.gatewayBff.api.response.FornecedorResponse;
 import jakarta.transaction.Transactional;
@@ -11,33 +11,33 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ApiProdutoService {
+public class ApiFornecedorService {
 
-    private final ApiProduto apiProdutoRepository;
+    private final ApiFornecedorProduto apiFornecedorProdutoRepository;
 
     @Transactional
     public FornecedorResponse salvar(FornecedorRequest fornecedor){
-        return apiProdutoRepository.criarFornecedor(fornecedor).getBody();
+        return apiFornecedorProdutoRepository.criarFornecedor(fornecedor).getBody();
     }
 
     @Transactional
     public FornecedorResponse resgatar(Long id) {
-        return apiProdutoRepository.fornecedorPorId(id).getBody();
+        return apiFornecedorProdutoRepository.fornecedorPorId(id).getBody();
     }
 
     @Transactional
     public List<FornecedorRequest> resgatarTodos(){
-        return apiProdutoRepository.listaFornecedores().getBody();
+        return apiFornecedorProdutoRepository.listaFornecedores().getBody();
     }
 
     @Transactional
     public void atualizarDados(Long id, FornecedorRequest fornecedor){
-        apiProdutoRepository.atualizarFornecedor(id, fornecedor);
+        apiFornecedorProdutoRepository.atualizarFornecedor(id, fornecedor);
     }
 
     @Transactional
     public void deletar(Long id) {
-        apiProdutoRepository.deletarFornecedor(id);
+        apiFornecedorProdutoRepository.deletarFornecedor(id);
     }
 
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "api-produto", url = "http://localhost:8080/fornecedores")
-public interface ApiProduto {
+@FeignClient(value = "api-fornecedor/produto", url = "http://localhost:8080/fornecedores")
+public interface ApiFornecedorProduto {
 
     @PostMapping
     ResponseEntity<FornecedorResponse> criarFornecedor(@RequestBody FornecedorRequest fornecedor);
