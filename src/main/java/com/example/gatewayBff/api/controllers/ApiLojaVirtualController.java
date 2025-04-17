@@ -1,10 +1,13 @@
 package com.example.gatewayBff.api.controllers;
 
+import com.example.gatewayBff.api.request.ClienteRequest;
 import com.example.gatewayBff.api.request.FornecedorRequest;
 import com.example.gatewayBff.api.request.ProdutoRequest;
+import com.example.gatewayBff.api.response.ClienteResponse;
 import com.example.gatewayBff.api.response.FornecedorResponse;
 import com.example.gatewayBff.api.response.ProdutoResponse;
 import com.example.gatewayBff.api.services.ApiLojaVirtualService;
+import feign.Response;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +86,26 @@ public class ApiLojaVirtualController {
     @DeleteMapping("produto/{id}")
     public ResponseEntity<Void> deletarProdutoPorId(@PathVariable Long id){
         apiLojaVirtualService.deletarProduto(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/cliente")
+    public ResponseEntity<ClienteResponse> registrarCliente(@RequestBody ClienteRequest cliente) {
+        var response = apiLojaVirtualService.salvarCliente(cliente);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(response);
+    }
+
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<ClienteResponse> resgatarClientePorId(@PathVariable Long id) {
+        var response = apiLojaVirtualService.resgatarCliente(id);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping("/cliente/{id}")
+    public ResponseEntity<Void> atualizarClientePorId(@PathVariable Long id, @RequestBody ClienteRequest clienteAtualizado) {
+        apiLojaVirtualService.atualizarCliente(id, clienteAtualizado);
         return ResponseEntity.noContent().build();
     }
 }

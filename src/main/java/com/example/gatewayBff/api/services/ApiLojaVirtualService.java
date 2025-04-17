@@ -1,8 +1,11 @@
 package com.example.gatewayBff.api.services;
 
+import com.example.gatewayBff.api.infra.apiclientes.ApiClientes;
 import com.example.gatewayBff.api.infra.apiproduto.ApiFornecedorProduto;
+import com.example.gatewayBff.api.request.ClienteRequest;
 import com.example.gatewayBff.api.request.FornecedorRequest;
 import com.example.gatewayBff.api.request.ProdutoRequest;
+import com.example.gatewayBff.api.response.ClienteResponse;
 import com.example.gatewayBff.api.response.FornecedorResponse;
 import com.example.gatewayBff.api.response.ProdutoResponse;
 import jakarta.transaction.Transactional;
@@ -16,6 +19,7 @@ import java.util.List;
 public class ApiLojaVirtualService {
 
     private final ApiFornecedorProduto apiFornecedorProdutoRepository;
+    private final ApiClientes apiClientesRepository;
 
     @Transactional
     public FornecedorResponse salvarFornecedor(FornecedorRequest fornecedor){
@@ -79,5 +83,20 @@ public class ApiLojaVirtualService {
     @Transactional
     public void deletarProduto(Long id) {
         apiFornecedorProdutoRepository.deleteProdutoPorId(id);
+    }
+
+    @Transactional
+    public ClienteResponse salvarCliente(ClienteRequest cliente) {
+        return apiClientesRepository.registrarCliente(cliente).getBody();
+    }
+
+    @Transactional
+    public ClienteResponse resgatarCliente(Long id) {
+        return apiClientesRepository.resgatarClientePorId(id).getBody();
+    }
+
+    @Transactional
+    public void atualizarCliente(Long id, ClienteRequest clienteAtualizado) {
+        apiClientesRepository.atualizarUsuarioPorId(id, clienteAtualizado);
     }
 }
