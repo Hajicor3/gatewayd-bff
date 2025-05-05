@@ -4,10 +4,7 @@ import com.example.gatewayBff.api.request.ClienteRequest;
 import com.example.gatewayBff.api.request.FornecedorRequest;
 import com.example.gatewayBff.api.request.PedidoRequest;
 import com.example.gatewayBff.api.request.ProdutoRequest;
-import com.example.gatewayBff.api.response.ClienteResponse;
-import com.example.gatewayBff.api.response.FornecedorResponse;
-import com.example.gatewayBff.api.response.PedidoResponse;
-import com.example.gatewayBff.api.response.ProdutoResponse;
+import com.example.gatewayBff.api.response.*;
 import com.example.gatewayBff.api.services.ApiClienteService;
 import com.example.gatewayBff.api.services.ApiFornecedoresService;
 import com.example.gatewayBff.api.services.ApiLojaVirtualService;
@@ -117,7 +114,7 @@ public class ApiLojaVirtualController {
     @Operation(description = "Retorna uma lista de Dto´s de todos os produtos do banco.")
     @ApiResponses(value = @ApiResponse(responseCode = "200",description = "Retorna uma lista de fornecedoresDto."))
     @GetMapping("/produtos")
-    public ResponseEntity<List<ProdutoResponse>> resgatarTodosProdutos() {
+    public ResponseEntity<List<ProdutoResponseMin>> resgatarTodosProdutos() {
         var response = apiProdutosService.resgatarTodosProdutos();
 
         return ResponseEntity.ok().body(response);
