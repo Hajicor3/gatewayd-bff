@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "api-cliente", url = "http://localhost:8082/clientes")
+@FeignClient(value = "api-cliente", url = "${api.clientes.url}")
 public interface ApiClientes {
 
     @PostMapping

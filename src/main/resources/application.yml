@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: gatewayBff
+  profiles:
+    active:
+      - ${SPRING_PROFILE:teste}
+server:
+  port: 8084
+

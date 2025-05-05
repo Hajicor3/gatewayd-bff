@@ -1,0 +1,5 @@
+api:
+  fornecedor-produtos:
+    url: ${FORNECEDOR_PRODUTO_URL}
+  clientes:
+    url: ${CLIENTES_URL}

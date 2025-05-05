@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "api-fornecedor/produto", url = "http://localhost:8080")
+@FeignClient(value = "api-fornecedor/produto", url = "${api.fornecedor-produtos.url}")
 public interface ApiFornecedorProduto {
 
     @PostMapping(value = "/fornecedores")

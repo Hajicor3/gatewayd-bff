@@ -1,0 +1,5 @@
+api:
+  fornecedor-produtos:
+    url: http://localhost:8080
+  clientes:
+    url: http://localhost:8082/clientes
