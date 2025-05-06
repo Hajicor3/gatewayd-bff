@@ -3,3 +3,5 @@ api:
     url: http://localhost:8080
   clientes:
     url: http://localhost:8082/clientes
+  front-end:
+    url: http://localhost:3000

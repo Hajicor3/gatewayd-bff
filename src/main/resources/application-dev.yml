@@ -3,3 +3,5 @@ api:
     url: ${FORNECEDOR_PRODUTO_URL}
   clientes:
     url: ${CLIENTES_URL}
+  front-end:
+    url: ${FRONT_END_URL}

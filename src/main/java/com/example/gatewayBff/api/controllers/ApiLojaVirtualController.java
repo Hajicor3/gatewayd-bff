@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "api-LojaVirtual")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("${api.front-end.url}")
 public class ApiLojaVirtualController {
 
     private final ApiLojaVirtualService apiLojaVirtualService;
