@@ -1,14 +1,8 @@
 package com.example.gatewayBff.api.controllers;
 
-import com.example.gatewayBff.api.request.ClienteRequest;
-import com.example.gatewayBff.api.request.FornecedorRequest;
-import com.example.gatewayBff.api.request.PedidoRequest;
-import com.example.gatewayBff.api.request.ProdutoRequest;
+import com.example.gatewayBff.api.request.*;
 import com.example.gatewayBff.api.response.*;
-import com.example.gatewayBff.api.services.ApiClienteService;
-import com.example.gatewayBff.api.services.ApiFornecedoresService;
-import com.example.gatewayBff.api.services.ApiLojaVirtualService;
-import com.example.gatewayBff.api.services.ApiProdutosService;
+import com.example.gatewayBff.api.services.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -31,6 +25,7 @@ public class ApiLojaVirtualController {
     private final ApiProdutosService apiProdutosService;
     private final ApiClienteService apiClienteService;
     private final ApiFornecedoresService apiFornecedoresService;
+    private final ApiEstoqueService apiEstoqueService;
 
     @Operation(description = "Salva um fornecedor no banco de dados")
     @ApiResponses(value = {
@@ -142,6 +137,13 @@ public class ApiLojaVirtualController {
     public ResponseEntity<Void> deletarProdutoPorId(@PathVariable Long id){
         apiProdutosService.deletarProduto(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/movimentacao")
+    public ResponseEntity<MovimentacaoResponse> registrarMovimentacao(@RequestBody MovimentacaoRequest movimentacao) {
+        var response = apiEstoqueService.salvarMov(movimentacao);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.getId()).toUri();
+        return ResponseEntity.created(uri).body(response);
     }
 
     @Operation(description = "Salva um Cliente no banco de dados.")

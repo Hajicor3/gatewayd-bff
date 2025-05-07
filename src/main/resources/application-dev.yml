@@ -5,3 +5,5 @@ api:
     url: ${CLIENTES_URL}
   front-end:
     url: ${FRONT_END_URL}
+  estoque:
+    url: ${ESTOQUE_URL}
