@@ -138,7 +138,13 @@ public class ApiLojaVirtualController {
         apiProdutosService.deletarProduto(id);
         return ResponseEntity.noContent().build();
     }
-
+    
+    @Operation(description = "Salva uma movimentação no banco de dados.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Salva uma movimentação no banco de dados."),
+            @ApiResponse(responseCode = "400", description = "Parametros inválidos."),
+            @ApiResponse(responseCode = "404", description = "O estoque do id não existe.")
+    })
     @PostMapping("/movimentacao")
     public ResponseEntity<MovimentacaoResponse> registrarMovimentacao(@RequestBody MovimentacaoRequest movimentacao) {
         var response = apiEstoqueService.salvarMov(movimentacao);
