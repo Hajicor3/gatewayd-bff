@@ -152,6 +152,12 @@ public class ApiLojaVirtualController {
         return ResponseEntity.created(uri).body(response);
     }
 
+    @GetMapping("/produto/movimentacoes/{id}")
+    public ResponseEntity<List<MovimentacaoResponse>> resgatarMovimentacoesPorIdProduto(@PathVariable Long id){
+        var response = apiEstoqueService.resgatarPorIdProduto(id);
+        return ResponseEntity.ok().body(response);
+    }
+
     @Operation(description = "Salva um Cliente no banco de dados.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Salva um cliente."),

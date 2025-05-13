@@ -17,6 +17,6 @@ public interface ApiEstoque {
     @PostMapping(value = "/movimentacoes")
     public ResponseEntity<MovimentacaoResponse> salvarMovimentacao(@RequestBody MovimentacaoRequest movimentacaoRequest);
 
-    @GetMapping(value = "/produto/list/{id}")
+    @GetMapping(value = "movimentacoes/produto/list/{id}")
     public ResponseEntity<List<MovimentacaoResponse>> resgatarMovimentacoesPorIdProduto(@PathVariable Long id);
 }
